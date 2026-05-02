@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🍣 Sakura Sushi</div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        <a href="about.html">About</a>
+        <a id="account-link" href="account.html" style="display:none;">Account</a>
+        <a id="admin-link" href="admin.html" style="display:none;">Admin Dashboard</a>
+    </nav>
+
+    <div class="auth-buttons">
+        <a id="login-link" href="auth.html" class="login-btn">Login</a>
+    </div>
+
+</header>
+
+<div class="cart-container">
+
+    <div>
+        <div id="cart-items"></div>
+    </div>
+
+    <div class="checkout-summary">
+
+        <h2>Order Summary</h2>
+
+        <h3>Subtotal: $<span id="subtotal">0.00</span></h3>
+        <h3>Tax: $<span id="tax">0.00</span></h3>
+        <h3>Tip: $<span id="tip">0.00</span></h3>
+
+        <div class="tip-buttons">
+            <button onclick="setTip(0)">No Tip</button>
+            <button onclick="setTip(0.10)">10%</button>
+            <button onclick="setTip(0.15)">15%</button>
+            <button onclick="setTip(0.20)">20%</button>
+        </div>
+
+        <hr>
+
+        <h2>Total: $<span id="total">0.00</span></h2>
+
+        <button onclick="checkout()">Checkout</button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

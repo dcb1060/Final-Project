@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Sakura Sushi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">🍣 Admin Panel</div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+    </nav>
+
+    <div class="auth-buttons">
+        <a href="#" class="login-btn" onclick="logout()">Logout</a>
+    </div>
+</header>
+
+<section class="admin-container">
+
+    <div class="dashboard-header">
+        <h1>Admin Dashboard</h1>
+        <p>Manage Sakura Sushi orders and menu items</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <!-- LEFT -->
+        <div class="left-column">
+
+            <div class="admin-box">
+                <h2>Menu Management</h2>
+
+                <div class="menu-form">
+                    <input type="text" id="item-name" placeholder="Item Name">
+                    <input type="number" id="item-price" placeholder="Price">
+                    <input type="text" id="item-category" placeholder="Category">
+                    <input type="text" id="item-image" placeholder="Image filename">
+
+                    <button onclick="addMenuItem()">Add Item</button>
+                </div>
+
+                <div id="menu-admin-list"></div>
+            </div>
+
+        </div>
+
+        <div class="right-column">
+
+            <div class="admin-box stats-box">
+                <h2>Dashboard Info</h2>
+
+                <div class="stat-card">
+                    <h3>Total Orders</h3>
+                    <p id="total-orders">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Pending Orders</h3>
+                    <p id="pending-orders">0</p>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Completed Orders</h3>
+                    <p id="completed-orders">0</p>
+                </div>
+            </div>
+
+            <div class="admin-box">
+                <h2>Orders</h2>
+                <div id="orders"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const role = localStorage.getItem("role");
+    const token = localStorage.getItem("token");
+
+    if (!token || role !== "admin") {
+        alert("Access denied: Admins only");
+        window.location.href = "index.html";
+    }
+});
+
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+</script>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

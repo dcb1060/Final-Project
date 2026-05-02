@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sakura Sushi Auth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">🍣 Sakura Sushi</div>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+    </nav>
+</header>
+
+<section class="auth-container">
+
+    <div class="auth-box">
+        <h2>Login</h2>
+
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+
+        <button id="loginBtn">Login</button>
+    </div>
+
+    <div class="auth-box">
+        <h2>Register</h2>
+
+        <input type="text" id="registerName" placeholder="Name">
+        <input type="email" id="registerEmail" placeholder="Email">
+        <input type="password" id="registerPassword" placeholder="Password">
+
+        <button onclick="register()">Register</button>
+    </div>
+
+</section>
+
+<script>
+const API = "http://localhost:3000";
+
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    try {
+        const res = await fetch(`${API}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: document.getElementById("loginEmail").value,
+                password: document.getElementById("loginPassword").value
+            })
+        });
+
+        const data = await res.json();
+        console.log("LOGIN RESPONSE:", data);
+
+        if (!data.token) {
+            alert(data.message || "Login failed");
+            return;
+        }
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("email", document.getElementById("loginEmail").value);
+
+        alert("Login successful as " + data.role);
+
+        window.location.href = "index.html";
+
+    } catch (err) {
+        console.error(err);
+        alert("Login error");
+    }
+});
+
+
+function register() {
+    fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: document.getElementById("registerName").value,
+            email: document.getElementById("registerEmail").value,
+            password: document.getElementById("registerPassword").value
+        })
+    })
+    .then(async res => {
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || "Registration failed");
+            return;
+        }
+
+        alert("Registration successful!");
+        window.location.href = "auth.html";
+    })
+    .catch(err => {
+        console.log(err);
+        alert("Server error");
+    });
+}
+
+function updateAuthUI() {
+    const token = localStorage.getItem("token");
+
+    const loginLink = document.getElementById("login-link");
+    const accountLink = document.getElementById("account-link");
+
+    if (!loginLink || !accountLink) return;
+
+    if (token) {
+        loginLink.innerText = "Logout";
+        loginLink.href = "#";
+
+        loginLink.onclick = () => {
+            localStorage.clear();
+            window.location.href = "index.html";
+        };
+
+        accountLink.style.display = "inline-block";
+
+    } else {
+        loginLink.innerText = "Login / Register";
+        loginLink.href = "auth.html";
+        loginLink.onclick = null;
+
+        accountLink.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>

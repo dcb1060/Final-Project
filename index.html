@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sakura Sushi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <h1 class="logo">🍣 Sakura Sushi</h1>
+
+    <nav class="nav-links">
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        <a href="about.html">About</a>
+        <a id="account-link" href="account.html" style="display:none;">Account</a>
+        <a id="admin-link" href="admin.html" style="display:none;">Admin Dashboard</a>
+    </nav>
+
+    <div class="auth-buttons">
+        <a id="login-link" href="auth.html" class="login-btn">Login</a>
+    </div>
+</header>
+
+<section class="hero">
+    <h2>Fresh Sushi, Crafted Daily</h2>
+    <p>Experience authentic Japanese cuisine made with premium ingredients.</p>
+    <a href="menu.html" class="btn">Order Now</a>
+</section>
+
+<section class="featured">
+    <h2>Popular Dishes</h2>
+    <div class="menu-container">
+
+        <div class="card">
+            <img src="images/dragon_roll.jpg" alt="Dragon Roll">
+            <h3>Dragon Roll</h3>
+            <p>$14</p>
+            <button onclick="addToCart('Dragon Roll', 14)">Add</button>
+        </div>
+
+        <div class="card">
+            <img src="images/salmon_nigiri.jpg" alt="Salmon Nigiri">
+            <h3>Salmon Nigiri (2 pcs)</h3>
+            <p>$12</p>
+            <button onclick="addToCart('Salmon Nigiri', 12)">Add</button>
+        </div>
+
+        <div class="card">
+            <img src="images/shrimp_tempura.jpg" alt="Shrimp Tempura Roll">
+            <h3>Shrimp Tempura Roll</h3>
+            <p>$13</p>
+            <button onclick="addToCart('Shrimp Tempura Roll', 13)">Add</button>
+        </div>
+
+    </div>
+</section>
+
+<section class="about">
+    <h2>About Us</h2>
+    <p>
+        At Sakura Sushi, we bring the taste of Japan to your table. 
+        Our chefs use only the freshest ingredients to create beautiful, delicious sushi.
+    </p>
+</section>
+
+<section class="reviews">
+    <h2>What Our Customers Say</h2>
+
+    <div class="review-card">
+        <p>"Best sushi I've ever had!"</p>
+        <span>- Alex</span>
+    </div>
+
+    <div class="review-card">
+        <p>"Fast delivery and amazing quality."</p>
+        <span>- Jamie</span>
+    </div>
+    <div class="review-card">
+        <p>"Great service and delicious food!"</p>
+        <span>- Taylor</span>
+    </div>
+
+</section>
+
+<section class="cta">
+    <h2>Ready to Order?</h2>
+    <a href="menu.html" class="btn">Browse Menu</a>
+</section>
+
+<footer>
+    <p>© 2026 Sakura Sushi | Follow us on social media</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
